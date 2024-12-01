@@ -1,0 +1,54 @@
+角色默认服装: sexy,
+黑色兔女郎: alternate costume, (bunny_girl:1.2), (pure black playboy bunny:1.2), black rabbit ears, white rabbit tail, fake animal ears, choker, earrings, covered navel, bare shoulders, (black_leotard), (pantyhose), strapless_leotard, (blak bridal_garter:1.2)
+南半球T恤热裤: alternate costume, (denim_shorts:1.2), open_shorts, (side-tie_shirt:1.1), white_shirt, (exposed_pocket:1.2), (open_fly:1.2), (underboob:1.2), (highleg:1.1), panty_straps, navel
+比基尼热裤: alternate costume, sun_hat, (denim_shorts:1.2), open_shorts, (open_clothes:1.1), white bikini, micro_bikini , cleavage, (exposed_pocket:1.2), (open_fly:1.2),  (highleg:1.1), black_panty_straps, navel,
+红色赛车女郎: alternate costume, (race_queen), (pure black over the knee super long boots:1.2), (pure black boots), (pure black Thigh-High Boots), leg straps, (scarlet red sports bra with super thin black shoulder straps), (scarlet red  mini bodycon skirt:1.2), (navel), black Fingerless gloves, black leather belt, wide belt, Collar, Side Slit, bracelet, bikini_top_only
+宝多六花比基尼: alternate costume, navel, bikini, black_bikini_bottom, side-tie_bikini_bottom, swimsuit, (layered_bikini:1.2), striped_bikini, wrist_scrunchie, (two-tone_bikini), white_bikini
+啦啦队: alternate costume, cheerleader, crop top, miniskirt
+舞者: alternate costume, circlet, dancer, harem outfit, jewelry, navel
+和服: alternate costume, kimono, yukata
+便利店员工: alternate costume, employee uniform, store clerk
+芭蕾舞者: alternate costume, ballerina, ballet slippers, black leotard, en pointe, tutu
+日式运动服: alternate costume, buruma, red_buruma
+健身房服: alternate costume, barbell, gym_pants, tight_clothes, tight_pants, cameltoe, sportswear, sportsbar
+吴京健身服: alternate costume, blue_track_suit, track_pants
+网球服: alternate costume, tennis uniform
+JK: alternate costume, school uniform, plaid skirt
+三点式比基尼: alternate costume, micro_bikini, string_bikini
+金色兔女郎: alternate costume, (bunny_girl:1.2), (golden playboy bunny:1.2), golden rabbit ears, white rabbit tail, fake animal ears, choker, earrings, covered navel, bare shoulders, (golden_leotard), (pantyhose), strapless_leotard, (golden bridal_garter:1.2)
+逆兔女郎: alternate costume, reverse_bunnysuit, reverse_outfit, rabbit ears,  rabbit tail, wrist cuffs, revealing clothes, frontless outfit, black gloves, black shrug, black_leotard
+逆兔女郎蕾丝翻边: alternate costume, reverse_bunnysuit, reverse_outfit, wrist cuffs, frills, revealing clothes, frontless outfit, black gloves, black shrug, black_leotard, black_pantyhose
+警官_浅蓝色: alternate costume, police_uniform , police_woman, cuffs, japan national police
+连体泳衣: alternate costume, competition_swimsuit, black one-piece swimsuit, highleg one-piece swimsuit
+渔网袜比基尼拉皮条: alternate costume, micro_bikini, highleg bikini, microskirt, detached_sleeves, black_sleeves, (fishnet_thighhighs), bare_shoulders, swimsuit, frills
+深蓝色OL_suit: alternate costume, lanyard, black_suit, suit jacket, formal clothes, black skirt, white shirt
+纯黑色布莱摩顿JK: alternate costume, school uniform, pure black skirt, sleeves_rolled_up, loose_socks, cleavage
+挎包口罩学生服: alternate costume, (a girl wearing a black mask with a school bag over shoulder:1.5), school_uniform, black_thighhighs, (black_pleated_skirt), sleeves_rolled_up, (black_clothes_around_waist), (white_shirt), black_necktie, choker, 
+厚黑JK:  alternate costume, school_uniform, black_pantyhose, (black_pleated_skirt), black jacket, blazer, white shirt, red_necktie, 
+#   // 纯黑色白衬衫OL_suit
+#   // 偶像演出服
+#   // 银色礼服
+#   // 金色礼服
+#   // 黑色礼服
+#   // 美国国旗比基尼: bikini, american flag print , swimsuit
+#   // 伦敦装英国国旗包臀裙
+#   // 爱宕赛车女郎: black bikini, black thighhighs, cleavage, race queen, shrug (clothing), white footwear, swimsuit, highleg bikini
+#   // 裸体围裙:
+#   // 监察者:
+#  // 警官_深蓝色
+#   // 圣诞老人
+#   // 淡紫色兔女郎
+#   // 护士服
+#   // 旗袍: china_dress
+#   // 铁十字军装
+#   巴尔的摩赛车女郎
+#   小黑裙比基尼蕾丝边
+#   巫女
+
+# 问题：总是紫色丝袜，kafka的胸上的带子和衣服一直都在
+# 和服太像浴衣了，不够华丽
+# 纯黑色布莱摩顿JK 不够黑
+# 警官服容易穿到男性身上
+# 便利店员工容易被赛车场污染
+# 健身房服容易没裤子
+# 芭蕾舞者脱了后辨识度不高
