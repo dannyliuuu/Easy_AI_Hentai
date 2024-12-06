@@ -3,7 +3,12 @@
   微笑: smile, 
   坐立腿: knee_up, sitting
   鸭子坐: wariza 
+  坐并向后看: sitting, looking_back  
+  鸭子坐并向后看: wariza, sitting, looking_back  
+  双手举起: arms up, cowboy shot, 
   # 脚很难画
+  站立撩发: standing, cowboy shot, hand up, (hair_flip:1.2)
+  蔑视你: looking at viewer, from_below, 
   # 脚伸过来: barefoot, feet, foot_focus
 
 # 本阶段不涉及性器官接触
@@ -15,7 +20,7 @@
   亲吻: kiss, kissing_cheek, (upper_body:1.2), close up view,
   口交手势: (oral_invitation:1.2), implied_fellatio, fellatio_gesture, implied_sex, implied_fingering
   舔手指: licking_finger, (finger_in_another's_mouth:1.2),
-
+# https://danbooru.donmai.us/posts/7827252?q=tour_guide
 # 本阶段不涉及性器插入，但其他什么都做了
 进一步调戏:
   摸阴: hand_in_panties, (hand_in_another's_panties:1.2),

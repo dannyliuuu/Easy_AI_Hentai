@@ -22,7 +22,8 @@ JK: alternate costume, school uniform, plaid skirt, white_shirt, short_sleeves,
 警官_浅蓝色: alternate costume, police_uniform , police_woman, cuffs, japan national police, peaked cap, pencil skirt, black_pantyhose, 
 连体泳衣: alternate costume, competition_swimsuit, black one-piece swimsuit, highleg one-piece swimsuit
 渔网袜比基尼拉皮条: alternate costume, micro_bikini, highleg bikini, microskirt, detached_sleeves, black_sleeves, (fishnet_thighhighs), bare_shoulders, swimsuit, frills
-OL_suit: alternate costume, lanyard, black_suit, suit jacket, formal clothes, black skirt, white shirt
+条纹OL: (alternate_costume), lanyard, black_suit, (striped_jacket:1.2),  jacket, formal clothes, black_pencil_skirt , white collar, black_pantyhose, collared_shirt, id_card, (sleeves_rolled_up),  
+纯黑OL: (alternate_costume), lanyard, black_suit, black_suit,  jacket, formal clothes, black_pencil_skirt , white collar, black_pantyhose, collared_shirt, id_card, (sleeves_rolled_up),  
 挎包口罩学生服: alternate costume, (a girl wearing a black mask with one school bag over shoulder:1.5), school_uniform, black_thighhighs, (black_pleated_skirt), sleeves_rolled_up, (black_clothes_around_waist), (white_shirt), black_necktie, choker, 
 旗袍: china_dress
 圣姨银色礼服: backless outfit, backless dress, bare shoulders, cowl neck, grey dress, jewelry, revealing clothes
