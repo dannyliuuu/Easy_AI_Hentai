@@ -1,0 +1,8 @@
+# 除非像宝多六花这种在官设里就有多种装扮的（主要是发型不同），其他的角色基本写个名字就够了，反正都是要换装的
+# 手游角色的装扮则可以仅通过名字来区分，如bremerton_(kung_fu_cruiser)_(azur_lane) 和 bremerton_(scorching-hot_training)_(azur_lane)，分别是布莱摩顿的功夫少女皮和炙热的网球练习皮，基本不需要再用tag描述一遍了，也不需要lora（这一点取决于你用的模型）
+马尾宝多六花: takarada_rikka, ponytail, blue_eyes, black_hair
+崩铁卡夫卡: Kafka, Kafka_(Honkai:_star_rail)
+老猞猁: kal'tsit_(arknights)
+史尔特尔: surtr_(arknights) 
+亚丝娜: asuna_(sao) 
+短发瘦小JK: short_hair, black_hair, slim_legs, small_breasts,
