@@ -6,6 +6,7 @@ import yaml
 import json
 import time
 import os
+import argparse
 
 current_script_path = os.path.abspath(__file__)
 current_script_dir = os.path.dirname(current_script_path)
@@ -99,27 +100,30 @@ def get_film_cfg(outfit_name="", env_name="", chara_name=""):
         scene_cfgs.append(scene_cfg)
 
     make_scene("自我展示", "")
-    # make_scene("调戏", ", (seductive_smile:1.1) ")
-    # make_scene("调戏", "")
-    # make_scene("进一步调戏", "")
-    # make_scene("口交", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, ")
-    # make_scene("口交结束", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, ")
-    # make_scene("准备", nsfw_clothed_tags + ", (pussy), (breasts_out), ")
-    # make_scene("进行", nsfw_clothed_tags)
-    # make_scene("进行", nsfw_half_nude_tags)
+    make_scene("调戏", ", (seductive_smile:1.1) ")
+    make_scene("进一步调戏", "")
+    make_scene(
+        "口交", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, "
+    )
+    make_scene(
+        "口交结束", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, "
+    )
+    make_scene("准备", nsfw_clothed_tags + ", (pussy), (breasts_out), ")
+    make_scene("进行", nsfw_clothed_tags)
+    make_scene("进行", nsfw_half_nude_tags)
     # make_scene("进行", nsfw_complete_nude_tags)
-    # make_scene(
-    #     "进行",
-    #     nsfw_cum_tags
-    #     + random.choice(
-    #         [
-    #             "fucked_silly",
-    #             "breasts_grab, breasts_squeeze, lactation",
-    #             "(head_back:1.2), excessive pussy juice, fingering,",
-    #         ]
-    #     ),
-    # )
-    # make_scene("事后", ",nsfw,")
+    make_scene(
+        "进行",
+        nsfw_cum_tags
+        + random.choice(
+            [
+                "fucked_silly",
+                "breasts_grab, breasts_squeeze, lactation",
+                "(head_back:1.2), excessive pussy juice, fingering,",
+            ]
+        ),
+    )
+    make_scene("事后", ",nsfw,")
 
     for scene_cfg in scene_cfgs:
         if scene_cfg["category"] != "自我展示":
@@ -137,7 +141,7 @@ def get_film_cfg(outfit_name="", env_name="", chara_name=""):
 def queue_prompt(prompt):
     p = {"prompt": prompt}
     data = json.dumps(p).encode("utf-8")
-    req = request.Request("http://127.0.0.1:8188/prompt", data=data)
+    req = request.Request(f"http://{cfg['COMFYUI_IP']}:{cfg['COMFYUI_PORT']}/prompt", data=data)
     try:
         with request.urlopen(req) as response:
             response_data = response.read().decode("utf-8")
@@ -152,30 +156,37 @@ def queue_prompt(prompt):
 
 
 def construct_prompt(scene_prefix_list, scene_cfg):
-    with open("prompt_template.json", "r", encoding="utf-8") as file:
+    with open(cfg['workflow_filepath'], "r", encoding="utf-8") as file:
         print("_".join(scene_prefix_list))
         prompt_template = json.load(file)
 
-        seed = generate_random_15_digit_number()
-        prompt_template["3"]["inputs"]["seed"] = seed
-        prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
 
-        prompt_template["5"]["inputs"]["width"] = 960
-        prompt_template["5"]["inputs"]["height"] = 1440
-        prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
-            scene_prefix_list + ["竖", str(seed)]
-        )
+        for i in range(cfg['n_repeat_vert_img']):
+            seed = generate_random_15_digit_number()
+            prompt_template["3"]["inputs"]["seed"] = seed
+            prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
+            prompt_template["5"]["inputs"]["width"] = cfg['vert_img_width']
+            prompt_template["5"]["inputs"]["height"] = cfg['vert_img_height']
+            prompt_template["5"]["inputs"]["batch_size"] = cfg['n_batch_vert_img']
+            prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
+                scene_prefix_list + ["竖", str(seed)]
+            )
+            queue_prompt(prompt_template)
+            time.sleep(1)
 
-        queue_prompt(prompt_template)
-        time.sleep(1)
 
-        prompt_template["5"]["inputs"]["width"] = 1440
-        prompt_template["5"]["inputs"]["height"] = 960
-        prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
-            scene_prefix_list + ["横", str(seed)]
-        )
-        queue_prompt(prompt_template)
-        time.sleep(1)
+        for i in range(cfg['n_repeat_hor_img']):
+            seed = generate_random_15_digit_number()
+            prompt_template["3"]["inputs"]["seed"] = seed
+            prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
+            prompt_template["5"]["inputs"]["width"] = cfg['hor_img_width']
+            prompt_template["5"]["inputs"]["height"] = cfg['hor_img_height']
+            prompt_template["5"]["inputs"]["batch_size"] = cfg['n_batch_hor_img']
+            prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
+                scene_prefix_list + ["横", str(seed)]
+            )
+            queue_prompt(prompt_template)
+            time.sleep(1)
 
 
 def generate_random_15_digit_number():
@@ -214,57 +225,15 @@ def preset_test(presets):
             ]
             construct_prompt(scene_prefix_list, scene_cfg)
 
-def env_test():
-    preset_test([
-        ("简单黑背景", "崩铁卡夫卡", "角色默认服装"),
-        ("简单白背景", "崩铁卡夫卡", "圣诞老人"),
-        ("简单灰背景", "崩铁卡夫卡", "铁十字军装"),
-        ("教室", "崩铁卡夫卡", "OL_suit"),
-        ("室内篮球场", "崩铁卡夫卡", "吴京健身服"),
-        ("器材室", "崩铁卡夫卡", "日式运动服"),
-        ("图书馆", "崩铁卡夫卡", "JK"),
-        ("校园走廊", "崩铁卡夫卡", "厚黑JK"),
-        ("酒店大床夜晚窗户", "崩铁卡夫卡", "圣姨银色礼服"),
-        ("演唱会", "崩铁卡夫卡", "偶像演出服"),
-        ("淋浴浴室", "崩铁卡夫卡", "裸体浴巾"),
-        ("浴缸浴室", "崩铁卡夫卡", "裸体浴巾"),
-        ("海滩", "崩铁卡夫卡", "美国国旗比基尼"),
-        ("室内泳池", "崩铁卡夫卡", "连体泳衣"),
-        ("露天泳池", "崩铁卡夫卡", "连体泳衣"),
-        ("公园", "崩铁卡夫卡", "裸体大衣"),
-        ("酷刑室", "崩铁卡夫卡", "警官_浅蓝色"),
-        ("小巷", "崩铁卡夫卡", "挎包口罩学生服"),
-        ("赌场", "崩铁卡夫卡", "逆兔女郎蕾丝翻边"),
-        ("赛车场", "崩铁卡夫卡", "巴尔的摩赛车女郎"),
-        ("咖啡厅", "崩铁卡夫卡", "角色默认服装"),
-        ("中世纪酒馆", "崩铁卡夫卡", "舞者"),
-        ("现代酒吧", "崩铁卡夫卡", "渔网袜比基尼拉皮条"),
-        ("办公室", "崩铁卡夫卡", "OL_suit"),
-        ("监狱", "崩铁卡夫卡", "警官_浅蓝色"),
-        ("脱衣舞秀钢管舞", "崩铁卡夫卡", "逆兔女郎"),
-        ("地下拳场", "崩铁卡夫卡", "健身房服"),
-        ("温泉", "崩铁卡夫卡", "裸体浴巾"),
-        ("病房", "崩铁卡夫卡", "护士"),
-        ("健身房", "崩铁卡夫卡", "健身房服"),
-        ("电车", "崩铁卡夫卡", "挎包口罩学生服"),
-        ("神社", "崩铁卡夫卡", "巫女"),
-        ("和室", "崩铁卡夫卡", "和服"),
-        ("大街", "崩铁卡夫卡", "旗袍"),
-        ("收银台", "崩铁卡夫卡", "便利店员工"),
-        ("中式豪华室内", "崩铁卡夫卡", "旗袍"),
-        ("录制现场", "崩铁卡夫卡", "爱宕赛车女郎"),
-        ("练舞室", "崩铁卡夫卡", "芭蕾舞者"),
-        ("沙发", "崩铁卡夫卡", "裸体围裙"),
-    ])
-    
 
-
+cfg = None
 if __name__ == "__main__":
-    # random_test(n_film = 50)
-    # env_test()   
-    preset_test([
-        ("赌场", "崩铁卡夫卡", "黑色兔女郎"),
-        ("小巷", "亚丝娜", "挎包口罩学生服"),
-        ("校园走廊", "短发瘦小JK", "厚黑JK"),
-        ("海滩", "马尾宝多六花", "宝多六花比基尼"), 
-    ])
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config_file", type=str, default="config/example.yml", help="配置文件的路径")
+    
+    args = parser.parse_args()
+    with open(args.config_file, 'r', encoding='utf-8') as file:
+        cfg = yaml.safe_load(file)
+        
+    print(cfg)
+    preset_test(cfg["films"])

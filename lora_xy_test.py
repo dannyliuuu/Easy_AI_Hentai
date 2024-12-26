@@ -20,7 +20,7 @@ def generate_random_15_digit_number():
 def queue_prompt(prompt):
     p = {"prompt": prompt}
     data = json.dumps(p).encode("utf-8")
-    req = request.Request("http://127.0.0.1:8188/prompt", data=data)
+    req = request.Request("http://127.0.0.1:8089/prompt", data=data)
     try:
         with request.urlopen(req) as response:
             response_data = response.read().decode("utf-8")
@@ -38,13 +38,28 @@ def construct_prompt():
     with open("prompt_template_coolsummer_lora.json", "r", encoding="utf-8") as file:
         prompt_template = json.load(file)
 
-        for strengh in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
+        for strengh in [0.2, 0.4, 0.6, 0.8, 1.0]:
             for lora in [
                 "coolsummer-000001.safetensors",
                 "coolsummer-000002.safetensors",
                 "coolsummer-000003.safetensors",
                 "coolsummer-000004.safetensors",
                 "coolsummer-000005.safetensors",
+                "coolsummer-000006.safetensors",
+                "coolsummer-000007.safetensors",
+                "coolsummer-000008.safetensors",
+                "coolsummer-000009.safetensors",
+                "coolsummer-000010.safetensors",
+                "coolsummer-000011.safetensors",
+                "coolsummer-000012.safetensors",
+                "coolsummer-000013.safetensors",
+                "coolsummer-000014.safetensors",
+                "coolsummer-000015.safetensors",
+                "coolsummer-000016.safetensors",
+                "coolsummer-000017.safetensors",
+                "coolsummer-000018.safetensors",
+                "coolsummer-000019.safetensors",
+                "coolsummer-000020.safetensors",
             ]:
                 seed = generate_random_15_digit_number()
                 prompt_template["3"]["inputs"]["seed"] = seed
@@ -58,6 +73,7 @@ def construct_prompt():
 
                 prompt_template["5"]["inputs"]["width"] = 960
                 prompt_template["5"]["inputs"]["height"] = 1440
+                prompt_template["5"]["inputs"]["batch_size"] = 1
 
                 filename_prefix = (
                     "lora_test_" + str(strengh) + "_" + lora.replace(".safetensors", "")
@@ -67,4 +83,6 @@ def construct_prompt():
 
                 queue_prompt(prompt_template)
                 time.sleep(1)
+
+
 construct_prompt()

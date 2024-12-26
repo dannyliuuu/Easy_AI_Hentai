@@ -1,0 +1,31 @@
+# ComfyUI的IP地址
+COMFYUI_IP: 127.0.0.1
+# ComfyUI的端口号，如果你不知道是什么，请修改为8188
+COMFYUI_PORT: 8188
+
+# 工作流路径
+workflow_filepath: workflow_templates\1lora_hyper_sdxl.json
+
+# 纵向图像的宽
+vert_img_width: 960
+# 纵向图像的高
+vert_img_height: 1440
+# 对一个体位来说，单次生成多少张纵向图像（数量越大越吃显存）
+n_batch_vert_img: 4
+# 对一个体位来说，生成多少次纵向图像
+n_repeat_vert_img: 1
+
+# 横向图像的宽
+hor_img_width: 1440
+# 横向图像的高
+hor_img_height: 960
+# 对一个体位来说，单次生成多少张横向图像（数量越大越吃显存）
+n_batch_hor_img: 4
+# 对一个体位来说，生成多少次横向图像
+n_repeat_hor_img: 1
+
+
+films:
+  # [地点，人物，衣装]
+  - [中世纪酒馆, 崩铁卡夫卡, 舞者]
+  - [海滩, 马尾宝多六花, 宝多六花比基尼]
