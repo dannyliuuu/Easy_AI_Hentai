@@ -4,7 +4,7 @@ COMFYUI_IP: 127.0.0.1
 COMFYUI_PORT: 8188
 
 # 工作流路径
-workflow_filepath: workflow_templates\1lora_hyper_sdxl.json
+workflow_filepath: workflow_templates\0lora.json
 
 # 纵向图像的宽
 vert_img_width: 960

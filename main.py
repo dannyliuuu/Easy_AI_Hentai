@@ -24,6 +24,7 @@ nsfw_half_nude_tags = static_tags_data["NSFW半裸"]
 nsfw_complete_nude_tags = static_tags_data["NSFW全裸"]
 nsfw_cum_tags = static_tags_data["NSFW中出"]
 quality_tags = static_tags_data["质量"]
+neg_tags = static_tags_data["负面"]
 
 
 def pick_by_category(category):
@@ -100,18 +101,14 @@ def get_film_cfg(outfit_name="", env_name="", chara_name=""):
         scene_cfgs.append(scene_cfg)
 
     make_scene("自我展示", "")
-    make_scene("调戏", ", (seductive_smile:1.1) ")
+    make_scene("调戏", "")
     make_scene("进一步调戏", "")
-    make_scene(
-        "口交", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, "
-    )
-    make_scene(
-        "口交结束", nsfw_clothed_tags + ", (oral_sex), (seductive_smile:1.1), heart, "
-    )
+    make_scene("口交", nsfw_clothed_tags + ", (seductive_smile:1.1), heart, ")
+    make_scene("口交结束", nsfw_clothed_tags + ", heart, ")
     make_scene("准备", nsfw_clothed_tags + ", (pussy), (breasts_out), ")
     make_scene("进行", nsfw_clothed_tags)
     make_scene("进行", nsfw_half_nude_tags)
-    # make_scene("进行", nsfw_complete_nude_tags)
+    make_scene("进行", nsfw_complete_nude_tags)
     make_scene(
         "进行",
         nsfw_cum_tags
@@ -141,7 +138,9 @@ def get_film_cfg(outfit_name="", env_name="", chara_name=""):
 def queue_prompt(prompt):
     p = {"prompt": prompt}
     data = json.dumps(p).encode("utf-8")
-    req = request.Request(f"http://{cfg['COMFYUI_IP']}:{cfg['COMFYUI_PORT']}/prompt", data=data)
+    req = request.Request(
+        f"http://{cfg['COMFYUI_IP']}:{cfg['COMFYUI_PORT']}/prompt", data=data
+    )
     try:
         with request.urlopen(req) as response:
             response_data = response.read().decode("utf-8")
@@ -156,32 +155,32 @@ def queue_prompt(prompt):
 
 
 def construct_prompt(scene_prefix_list, scene_cfg):
-    with open(cfg['workflow_filepath'], "r", encoding="utf-8") as file:
+    with open(cfg["workflow_filepath"], "r", encoding="utf-8") as file:
         print("_".join(scene_prefix_list))
         prompt_template = json.load(file)
 
-
-        for i in range(cfg['n_repeat_vert_img']):
+        for i in range(cfg["n_repeat_vert_img"]):
             seed = generate_random_15_digit_number()
             prompt_template["3"]["inputs"]["seed"] = seed
             prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
-            prompt_template["5"]["inputs"]["width"] = cfg['vert_img_width']
-            prompt_template["5"]["inputs"]["height"] = cfg['vert_img_height']
-            prompt_template["5"]["inputs"]["batch_size"] = cfg['n_batch_vert_img']
+            prompt_template["7"]["inputs"]["text"] = neg_tags
+            prompt_template["5"]["inputs"]["width"] = cfg["vert_img_width"]
+            prompt_template["5"]["inputs"]["height"] = cfg["vert_img_height"]
+            prompt_template["5"]["inputs"]["batch_size"] = cfg["n_batch_vert_img"]
             prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
                 scene_prefix_list + ["竖", str(seed)]
             )
             queue_prompt(prompt_template)
             time.sleep(1)
 
-
-        for i in range(cfg['n_repeat_hor_img']):
+        for i in range(cfg["n_repeat_hor_img"]):
             seed = generate_random_15_digit_number()
             prompt_template["3"]["inputs"]["seed"] = seed
             prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
-            prompt_template["5"]["inputs"]["width"] = cfg['hor_img_width']
-            prompt_template["5"]["inputs"]["height"] = cfg['hor_img_height']
-            prompt_template["5"]["inputs"]["batch_size"] = cfg['n_batch_hor_img']
+            prompt_template["7"]["inputs"]["text"] = neg_tags
+            prompt_template["5"]["inputs"]["width"] = cfg["hor_img_width"]
+            prompt_template["5"]["inputs"]["height"] = cfg["hor_img_height"]
+            prompt_template["5"]["inputs"]["batch_size"] = cfg["n_batch_hor_img"]
             prompt_template["9"]["inputs"]["filename_prefix"] = "_".join(
                 scene_prefix_list + ["横", str(seed)]
             )
@@ -229,11 +228,13 @@ def preset_test(presets):
 cfg = None
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config_file", type=str, default="config/example.yml", help="配置文件的路径")
-    
+    parser.add_argument(
+        "--config_file", type=str, default="config/example.yml", help="配置文件的路径"
+    )
+
     args = parser.parse_args()
-    with open(args.config_file, 'r', encoding='utf-8') as file:
+    with open(args.config_file, "r", encoding="utf-8") as file:
         cfg = yaml.safe_load(file)
-        
+
     print(cfg)
     preset_test(cfg["films"])
