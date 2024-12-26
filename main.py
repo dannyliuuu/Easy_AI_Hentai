@@ -24,6 +24,7 @@ nsfw_half_nude_tags = static_tags_data["NSFW半裸"]
 nsfw_complete_nude_tags = static_tags_data["NSFW全裸"]
 nsfw_cum_tags = static_tags_data["NSFW中出"]
 quality_tags = static_tags_data["质量"]
+neg_tags = static_tags_data["负面"]
 
 
 def pick_by_category(category):
@@ -162,6 +163,7 @@ def construct_prompt(scene_prefix_list, scene_cfg):
             seed = generate_random_15_digit_number()
             prompt_template["3"]["inputs"]["seed"] = seed
             prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
+            prompt_template["7"]["inputs"]["text"] = neg_tags
             prompt_template["5"]["inputs"]["width"] = cfg["vert_img_width"]
             prompt_template["5"]["inputs"]["height"] = cfg["vert_img_height"]
             prompt_template["5"]["inputs"]["batch_size"] = cfg["n_batch_vert_img"]
@@ -175,6 +177,7 @@ def construct_prompt(scene_prefix_list, scene_cfg):
             seed = generate_random_15_digit_number()
             prompt_template["3"]["inputs"]["seed"] = seed
             prompt_template["6"]["inputs"]["text"] = scene_cfg["tags"]
+            prompt_template["7"]["inputs"]["text"] = neg_tags
             prompt_template["5"]["inputs"]["width"] = cfg["hor_img_width"]
             prompt_template["5"]["inputs"]["height"] = cfg["hor_img_height"]
             prompt_template["5"]["inputs"]["batch_size"] = cfg["n_batch_hor_img"]
