@@ -31,7 +31,7 @@
   },
   "4": {
     "inputs": {
-      "ckpt_name": "obsessionIllustrious_v30.safetensors"
+      "ckpt_name": "obsessionIllustrious_v31.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {

@@ -26,7 +26,7 @@
 目前包含三个预设模板：
 
 1. `workflow_templates/0lora.json` 直接使用大模型生成，默认使用的是 `obsessionIllustrious_v30`
-2. `workflow_templates/1lora_hyper_sdxl.json` 使用 大模型 + 一个 lora 生成，默认使用的是 `obsessionIllustrious_v30` 和 `Hyper-SDXL-12steps-CFG-lora`，这个生成速度会快一点
+2. `workflow_templates/1lora_hyper_sdxl.json` 使用 大模型 + 一个 lora 生成，默认使用的是 `obsessionIllustrious_v31` 和 `Hyper-SDXL-12steps-CFG-lora`，这个生成速度会快一点
 3. `workflow_templates/1lora_自炼coolsummer.json` 我自己测试用的，请无视它
 
 如果你想用你自己的工作流，请先用 ComfyUI 将其保存为 API 格式 （Export (API)），放置在`workflow_templates`目录中，并修改`config/example.yml`的配置`workflow_filepath`。另外，这个项目的目标是用提示词组合大批量生成图片，因此稍微复杂的工作流（比如图生图）是不支持的。基本上，你只能在预设工作流上调调参数、换换模型。
