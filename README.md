@@ -9,6 +9,7 @@
 
 # 前置需求
 确保你已经能够成功安装并使用 ComfyUI (https://github.com/comfyanonymous/ComfyUI)
+
 虽然支持使用各种大模型，但是测下来还是新一点的大模型较好（因为新的模型大多数都支持仅使用提示词绘制，而不需要 lora 或 controlnet 来额外控制）。如果你用了半天觉得效果很差，可以换成`obsessionIllustrious_v31``这个模型试试（这是我自己测试时用的模型）。
 
 # 使用方法
